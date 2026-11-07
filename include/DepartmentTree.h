@@ -1,4 +1,4 @@
-// DepartmentTree.h
+
 // Purpose: General tree of academic departments (any number of children per node)
 //          with search, indented hierarchy, traversals, and statistics.
 // Author:  Member C
