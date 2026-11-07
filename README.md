@@ -1,6 +1,5 @@
 # Smart-Campus-Navigation-Facility-Analytics-System-2110-UNT
 
-**Phase:** Milestone 1
 
 ## Purpose
 This project is a modular C++ application designed to load, validate, and analyze campus data from structured text files. The system allows users to:
