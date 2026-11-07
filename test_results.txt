@@ -1,1 +1,42 @@
+MILESTONE 1 TEST RESULTS
 
+Format: [Test Number] | [Description] | [Input] | [Expected Result] | [Actual Result] | [Pass/Fail]
+
+--- 10.1 FILE LOADING ---
+10.1.1 | Valid records, blank lines, comments | testdata/file_with_blanks.txt | Blanks and comments ignored, valid records parsed without error. | Blanks and comments ignored, valid records parsed without error. | Pass
+10.1.2 | Wrong field counts | testdata/bad_fields.txt | Records with <4 or >4 fields rejected, warnings printed with line number/reason. | Records with <4 or >4 fields rejected, warnings printed with line number/reason. | Pass
+10.1.3 | Missing file | Load fake_file.txt | Prints "Error: Could not open fake_file.txt" and continues program without crashing. | Prints "Error: Could not open fake_file.txt" and continues program without crashing. | Pass
+10.1.4 | Duplicate building names (capitalization) | "library" vs "Library" | Second record rejected as duplicate building name. | Second record rejected as duplicate building name. | Pass
+10.1.5 | Duplicate facility IDs (capitalization) | "f001" vs "F001" | Second record rejected, keeps the first accepted record. | Second record rejected, keeps the first accepted record. | Pass
+10.1.6 | Unknown building references | Connection/Facility with unknown bldg | Record rejected, warning identifies unknown reference. | Record rejected, warning identifies unknown reference. | Pass
+10.1.7 | Duplicate and reversed connections | A|B then B|A | Counted once, second record rejected as duplicate. | Counted once, second record rejected as duplicate. | Pass
+10.1.8 | Unknown department parent | Child|FakeParent | Record rejected, warning identifies unknown parent reference. | Record rejected, warning identifies unknown parent reference. | Pass
+
+--- 10.2 HASH TABLE AND SEARCH ---
+10.2.1 | Successful ID search | Menu Option 2 -> "F004" | Prints "Found: F004 | Computer Lab A | ... " | Prints "Found: F004 | Computer Lab A | ... " | Pass
+10.2.2 | Lowercase ID search | Menu Option 2 -> "f004" | Normalized to F004, prints "Found: F004 | Computer Lab A | ... " | Normalized to F004, prints "Found: F004 | Computer Lab A | ... " | Pass
+10.2.3 | Invalid-format ID search | Menu Option 2 -> "004" | Prints "Invalid format: an ID is F followed by exactly three digits" | Prints "Invalid format: an ID is F followed by exactly three digits" | Pass
+10.2.4 | Not-found ID search | Menu Option 2 -> "F999" | Prints "Not found: no facility with ID F999" | Prints "Not found: no facility with ID F999" | Pass
+10.2.5 | Hash collision | testdata/collision_test.txt | HASH-7 diagnostic reports exactly 1 collision (F000 and F018 hash to same index). | Diagnostic reports 1 collision during load summary. | Pass
+10.2.6 | Duplicate-key insertion attempt | Add existing ID | Rejected, and the collision count does NOT increase from the rejection. | Rejected, collision count remains unchanged. | Pass
+
+--- 10.3 GRAPH AND BFS ---
+10.3.1 | BFS connected building | Menu Option 7 -> "Library" | Visits all connected buildings in order, showing correct distances. | Visits connected buildings in BFS order with accurate distance steps. | Pass
+10.3.2 | BFS isolated building | Menu Option 7 -> "Observatory" | Shows distance 0, 1 of 7 buildings reachable. | Shows distance 0, 1 of 7 buildings reachable. | Pass
+10.3.3 | BFS unknown start | Menu Option 7 -> "FakeBldg" | Prints "Error: Unknown starting building" and returns to menu. | Prints "Error: Unknown starting building" and returns to menu. | Pass
+10.3.4 | Multiple connected components | Custom data with 2 separate clusters | BFS only traverses the cluster containing the start building. | BFS stops after traversing the local connected component. | Pass
+
+--- 10.4 TREE, REPORTS, AND MENU ---
+10.4.1 | Empty tree root add | Menu 9 (Add Dept) on empty tree | Prompts for name, adds as root WITHOUT prompting for parent. | Prompts for name, adds as root WITHOUT prompting for parent. | Pass
+10.4.2 | Root-only tree | Add root, Menu 11 (Hierarchy) | Shows just the root department with no indentation/children. | Shows just the root department with no indentation/children. | Pass
+10.4.3 | Search for root | Menu 10 -> "University" | Prints Name, Parent: None, Child count, Depth 0. | Prints Name, Parent: None, Child count, Depth 0. | Pass
+10.4.4 | Search for non-root | Menu 10 -> "Physics" | Prints Name, Parent: College of Science, Child count, correct depth. | Prints Name, Parent: College of Science, Child count, correct depth. | Pass
+10.4.5 | Search missing dept | Menu 10 -> "FakeDept" | Prints "Department not found." | Prints "Department not found." | Pass
+10.4.6 | Add unknown parent | Menu 9 -> Parent "Fake" | Prints "Error: Unknown parent department", tree unchanged. | Prints "Error: Unknown parent department", tree unchanged. | Pass
+10.4.7 | Add duplicate dept | Menu 9 -> "Physics" | Prints "Error: Department name already exists", tree unchanged. | Prints "Error: Department name already exists", tree unchanged. | Pass
+10.4.8 | Preorder traversal | Menu 12 (Preorder) | Sequence printed top-to-bottom without indentation. | Sequence printed top-to-bottom without indentation. | Pass
+10.4.9 | Invalid menu input | Type 'X' at main menu | Prints "Invalid input", recovers to menu without crashing. | Prints "Invalid input", recovers to menu without crashing. | Pass
+10.4.10| Text at numeric prompt | Type text at numeric prompt | Error handled via utils::parseInt, stream clears, recovers to menu. | Error handled via utils::parseInt, stream clears, recovers to menu. | Pass
+10.4.11| Names with spaces | "Student Union" | getline/trim handles it correctly without truncating at the space. | getline/trim handles it correctly without truncating at the space. | Pass
+10.4.12| Blank names | Hit enter without typing | Validated via utils::readLine, prints error, returns to menu. | Validated via utils::readLine, prints error, returns to menu. | Pass
+10.4.13| Repeated operations | Trigger error, try valid input | Works normally, no infinite loops or stream lockups. | Works normally, no infinite loops or stream lockups. | Pass
