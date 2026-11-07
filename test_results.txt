@@ -1,4 +1,4 @@
-MILESTONE 1 TEST RESULTS
+TEST RESULTS
 
 Format: [Test Number] | [Description] | [Input] | [Expected Result] | [Actual Result] | [Pass/Fail]
 
