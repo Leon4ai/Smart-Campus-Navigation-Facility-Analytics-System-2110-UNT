@@ -1,1 +1,32 @@
+DESIGN DOCUMENT
 
+1. MAIN CLASSES AND MODULES
+- Utils: A shared namespace providing string manipulation functions (trimming, case-insensitive comparison, uppercase/lowercase conversion) and input handling. Used by all modules to ensure consistent parsing and matching.
+- FileLoader: A dedicated namespace to coordinate the loading, parsing, and validation of the four input data files. It handles field counts, empty fields, and unknown references, separating file I/O from data structure logic.
+- HashTable: A custom hash table implementation using string keys (Facility IDs) mapped to integer indices. It manages hashing, insertions, lookups, and collision tracking.
+- Facility / FacilityDatabase: Represents facility records and stores accepted facilities in a vector to maintain file order. It utilizes the HashTable to index IDs for O(1) lookups.
+- CampusGraph: Represents the undirected, unweighted network of campus walkways. Manages vertices (buildings) and edges (connections), and provides Breadth-First Search (BFS) reachability logic.
+- DepartmentNode / DepartmentTree: Represents the n-ary hierarchical tree of academic departments using a vector of child pointers per node. Handles preorder traversals and hierarchy formatting.
+
+2. CUSTOM HASH FUNCTION
+The custom hash function uses a simple polynomial rolling hash formula over the normalized (uppercase) key:
+Formula: h = (h * 31 + c) mod capacity
+Implementation details: The function starts with a hash value of 0. It iterates through every character `c` of the uppercase ID. For each character, it multiplies the current hash by the prime number 31, adds the ASCII value of the character `c`, and then applies the modulo operator using the table's capacity. This ensures the resulting index is always within the bounds of the bucket array.
+
+3. COLLISION STRATEGY
+Chosen Strategy: Separate Chaining
+We implemented separate chaining by making each bucket in our hash table a `std::vector<Entry>`. 
+Reasoning: The project instructions recommend separate chaining because it does not impose an arbitrary fixed maximum number of facilities. If multiple IDs hash to the same bucket, we simply push the new entry onto the back of that bucket's vector. This avoids the clustering issues common in linear probing and ensures insertions never fail simply due to a lack of table slots.
+
+4. COLLISION COUNTING DEFINITION
+A collision is explicitly counted during an accepted insertion if the target bucket is NOT empty prior to the insertion. 
+If an ID is rejected because it is a duplicate (case-insensitively), it does not alter the hash table and therefore does NOT increment the collision count. Our testdata (`collision_test.txt`) proves this by mapping F000 and F018 to the same index (7), registering exactly 1 collision.
+
+5. HASH TABLE CAPACITY AND FULL-TABLE BEHAVIOR
+Initial Capacity: 13 (DEFAULT_CAPACITY)
+Because we use separate chaining with dynamically sizing vectors for our buckets, the hash table does not have a hard upper limit and never reaches a strictly "full" state where open addressing would normally fail. Chains will simply continue to grow if load factors increase. Therefore, we do not need to reject any valid facility records due to capacity constraints.
+
+6. GRAPH REPRESENTATION
+Chosen Representation: Adjacency List
+Our CampusGraph is implemented using two parallel vectors: a `std::vector<std::string> names` to store building names in insertion order, and a `std::vector<std::vector<int>> adj` to store the neighbor indices for each building.
+Reasoning: An adjacency list was chosen over an adjacency matrix because campus walkways form a highly sparse graph. Most buildings only connect to 1 to 3 neighboring buildings, not all of them. An adjacency matrix would waste significant memory storing zeroes for non-existent paths (O(V^2) space). The list representation (O(V + E) space) is much more memory-efficient and makes BFS neighbor iteration faster.
