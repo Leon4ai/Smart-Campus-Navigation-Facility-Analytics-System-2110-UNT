@@ -1,1 +1,9 @@
+# The line below is completely empty
 
+# The line below contains only spaces and tabs
+  	  	  
+# The next line is a valid building with spaces padding it
+     Library     
+
+# Another comment, followed by a valid building
+Science Building
