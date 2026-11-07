@@ -1,1 +1,152 @@
+#include "Utils.h"
+#include "FileLoader.h"
+#include "CampusGraph.h"
+#include "Facility.h"
+#include "DepartmentTree.h"
+#include <iostream>
+#include <string>
 
+void displayMenu() {
+    std::cout << "\n--- System Menu ---\n"
+              << "1. View all facilities\n"
+              << "2. Search facility by ID\n"
+              << "3. Search facility by name\n"
+              << "4. Search facility by category\n"
+              << "5. View campus graph\n"
+              << "6. Display graph counts and degrees\n"
+              << "7. Find reachable buildings (BFS)\n"
+              << "8. Find shortest path (BFS)\n"
+              << "9. Add department\n"
+              << "10. Search department\n"
+              << "11. Display department hierarchy\n"
+              << "12. Preorder traversal\n"
+              << "13. Postorder traversal\n"
+              << "14. Level-order traversal\n"
+              << "15. Department statistics\n"
+              << "16. Facility category report\n"
+              << "17. Graph connectivity report\n"
+              << "18. Exit\n";
+}
+
+int main(int argc, char* argv[]) {
+    std::string dataDir = "data/";
+    if (argc > 1) {
+        dataDir = argv[1];
+        if (dataDir.back() != '/' && dataDir.back() != '\\') {
+            dataDir += "/";
+        }
+    }
+
+    CampusGraph graph;
+    FacilityDatabase db;
+    DepartmentTree tree;
+
+    loader::loadBuildings(dataDir + "buildings.txt", graph);
+    loader::loadConnections(dataDir + "connections.txt", graph);
+    loader::loadFacilities(dataDir + "facilities.txt", graph, db);
+    loader::loadDepartments(dataDir + "departments.txt", tree);
+
+    std::string input;
+    while (true) {
+        displayMenu();
+        if (!utils::readLine("Select an option: ", input)) break;
+        
+        int choice;
+        if (!utils::parseInt(input, choice)) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            continue;
+        }
+
+        if (choice == 18) {
+            std::cout << "Exiting program.\n";
+            break;
+        }
+
+        switch (choice) {
+            case 1:
+                db.displayAll();
+                break;
+            case 2:
+                if (utils::readLine("Enter Facility ID: ", input)) db.searchById(input);
+                break;
+            case 3:
+                if (utils::readLine("Enter Facility Name: ", input)) db.searchByName(input);
+                break;
+            case 4:
+                if (utils::readLine("Enter Facility Category: ", input)) db.searchByCategory(input);
+                break;
+            case 5:
+                graph.display();
+                break;
+            case 6:
+                graph.displayCountsAndDegrees();
+                break;
+            case 7:
+                if (utils::readLine("Enter starting building: ", input)) graph.reachable(input);
+                break;
+            case 8: {
+                std::string start, dest;
+                if (utils::readLine("Enter starting building: ", start) && 
+                    utils::readLine("Enter destination building: ", dest)) {
+                    graph.shortestPath(start, dest);
+                }
+                break;
+            }
+            case 9: {
+                if (!utils::readLine("Enter new department name: ", input) || input.empty()) {
+                    std::cout << "Error: Invalid department name.\n";
+                    break;
+                }
+                if (tree.find(input)) {
+                    std::cout << "Error: Department name already exists.\n";
+                    break;
+                }
+                if (tree.isEmpty()) {
+                    tree.addRoot(input);
+                    std::cout << "Root department added.\n";
+                } else {
+                    std::string parentInput;
+                    if (utils::readLine("Enter parent department name: ", parentInput)) {
+                        DepartmentNode* parentNode = tree.find(parentInput);
+                        if (!parentNode) {
+                            std::cout << "Error: Unknown parent department.\n";
+                        } else {
+                            tree.addChild(parentNode, input);
+                            std::cout << "Department added.\n";
+                        }
+                    }
+                }
+                break;
+            }
+            case 10:
+                if (utils::readLine("Enter department name: ", input)) tree.search(input);
+                break;
+            case 11:
+                tree.displayHierarchy();
+                break;
+            case 12:
+                tree.preorder();
+                break;
+            case 13:
+                tree.postorder();
+                break;
+            case 14:
+                tree.levelOrder();
+                break;
+            case 15:
+                tree.statistics();
+                break;
+            case 16:
+                db.categoryReport();
+                break;
+            case 17:
+                graph.connectivityReport();
+                break;
+            default:
+                std::cout << "Invalid menu choice. Please select 1-18.\n";
+                break;
+        }
+    }
+
+    return 0;
+}
