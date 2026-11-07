@@ -1,0 +1,26 @@
+# Team Contributions
+
+## Team Member 1: Roosevelt Ngwatemoh
+**Modules Owned:** Implementation of all core system logic (`.cpp` files), including Hash Table, Campus Graph, Department Tree, File Loader, Utilities, and the Main Menu.
+
+**Responsibilities:**
+* Implemented the custom string polynomial hash function and separate chaining collision logic in `HashTable.cpp`.
+* Wrote the Breadth-First Search (BFS) reachability and shortest-path algorithms in `CampusGraph.cpp`.
+* Implemented the general n-ary tree insertion, search, and preorder traversal logic in `DepartmentTree.cpp`.
+* Developed the robust file parsing logic, whitespace trimming, and string splitting in `Utils.cpp` and `FileLoader.cpp`.
+* Built the interactive command-line interface, menu routing, and user input validation in `main.cpp`.
+
+## Team Member 2: []
+**Modules Owned:** System Architecture, Data Structure Design, and all Header (`.h`) files.
+
+**Responsibilities:**
+* Designed the adjacency list structure for the CampusGraph and defined the BuildingVertex/node relationships.
+* Formulated the custom hash table interface and internal Entry struct for separate chaining.
+* Defined the n-ary DepartmentNode struct and traversal method signatures.
+* Established the shared utility prototypes and class boundaries/include guards across the project.
+
+## Shared Work
+* Repository setup.
+* Designing custom edge-case test files (`testdata/`).
+* Executing and documenting test results (`test_results.txt`).
+* Drafting the system design document (`design_document.txt`) and `README.md`.
