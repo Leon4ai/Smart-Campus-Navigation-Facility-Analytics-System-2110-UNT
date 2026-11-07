@@ -1,1 +1,8 @@
+# F000 hashes to index 7
+F000|Test Room A|Library|Study
 
+# F018 also hashes to index 7, triggering a collision
+F018|Test Room B|Library|Study
+
+# Valid ID that does not collide (hashes to index 8)
+F001|Test Room C|Library|Study
