@@ -1,6 +1,5 @@
 # Smart-Campus-Navigation-Facility-Analytics-System-2110-UNT
 
-# Smart Campus Navigation and Facility Analytics System
 **Phase:** Milestone 1
 
 ## Purpose
