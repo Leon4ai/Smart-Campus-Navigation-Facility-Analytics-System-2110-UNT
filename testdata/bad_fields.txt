@@ -1,1 +1,11 @@
+# Line 2: Too few fields (only 2)
+F001|Main Reading Room
 
+# Line 5: Too many fields (5 instead of 4)
+F002|Tutoring Center|Library|Tutoring|ExtraField
+
+# Line 8: Missing a required field (empty facility name)
+F003||Student Union|Student Services Office
+
+# Line 11: Valid record to ensure the program recovers and keeps reading
+F004|Computer Lab A|Science Building|Computer Lab
