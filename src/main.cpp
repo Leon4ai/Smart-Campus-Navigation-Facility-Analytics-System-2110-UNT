@@ -164,10 +164,10 @@ int main(int argc, char* argv[]) {
 #include <iostream>
 #include <string>
 
-// Set to true for the Final submission, false for Milestone 1 (UI-7).
+
 const bool USE_FINAL_MENU = true;
 
-// Reads a name. Prints an error and returns false if it is blank (UI-5).
+
 bool readName(const std::string& prompt, std::string& out) {
     if (!utils::readLine(prompt, out)) return false;
     if (out.empty()) {
@@ -177,7 +177,7 @@ bool readName(const std::string& prompt, std::string& out) {
     return true;
 }
 
-// Prints the Milestone 1 menu (Section 6.9).
+
 void displayM1Menu() {
     std::cout << "\n--- System Menu ---\n"
               << "1. View all facilities\n"
@@ -192,7 +192,7 @@ void displayM1Menu() {
               << "10. Exit\n";
 }
 
-// Prints the Final menu (Section 6.9).
+// Prints the Final menu 
 void displayFinalMenu() {
     std::cout << "\n--- System Menu ---\n"
               << "1. View all facilities\n"
@@ -215,7 +215,7 @@ void displayFinalMenu() {
               << "18. Exit\n";
 }
 
-// Adds a department: root with no parent prompt if the tree is empty (TREE-3).
+
 void addDepartment(DepartmentTree& tree) {
     std::string name;
     if (!readName("Enter new department name: ", name)) return;
@@ -253,7 +253,7 @@ int main(int argc, char* argv[]) {
     FacilityDatabase db;
     DepartmentTree tree;
 
-    // LOAD-1: required load order.
+    
     loader::loadBuildings(dataDir + "buildings.txt", graph);
     loader::loadConnections(dataDir + "connections.txt", graph);
     loader::loadFacilities(dataDir + "facilities.txt", graph, db);
@@ -276,7 +276,7 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        // Map Milestone 1 numbers onto the Final numbers so one switch handles both.
+        
         if (!USE_FINAL_MENU) {
             const int m1ToFinal[] = {0, 1, 2, 5, 6, 7, 9, 10, 11, 12};
             choice = m1ToFinal[choice];
