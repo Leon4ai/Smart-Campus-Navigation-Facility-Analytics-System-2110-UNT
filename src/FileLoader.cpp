@@ -19,8 +19,12 @@ void loadBuildings(const std::string& path, CampusGraph& graph) {
         lineNum++;
         if (utils::isBlankOrComment(line)) continue;
 
-        std::string bldgName = utils::trim(line);
-        if (bldgName.empty()) {
+                std::vector<std::string> fields = utils::splitFields(line);
+        std::string bldgName = fields[0];
+        if (fields.size() != 1) {
+            std::cout << "Warning in " << path << " line " << lineNum << ": wrong field count\n";
+            rej++;
+        } else if (bldgName.empty()) {
             std::cout << "Warning in " << path << " line " << lineNum << ": empty building name\n";
             rej++;
         } else if (!graph.addBuilding(bldgName)) {
