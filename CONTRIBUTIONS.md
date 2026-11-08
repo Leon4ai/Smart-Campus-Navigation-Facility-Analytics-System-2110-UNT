@@ -10,7 +10,7 @@
 * Developed the robust file parsing logic, whitespace trimming, and string splitting in `Utils.cpp` and `FileLoader.cpp`.
 * Built the interactive command-line interface, menu routing, and user input validation in `main.cpp`.
 
-## Team Member 2: []
+## Team Member 2: Abdullah Zaigham 
 **Modules Owned:** System Architecture, Data Structure Design, and all Header (`.h`) files.
 
 **Responsibilities:**
@@ -18,6 +18,7 @@
 * Formulated the custom hash table interface and internal Entry struct for separate chaining.
 * Defined the n-ary DepartmentNode struct and traversal method signatures.
 * Established the shared utility prototypes and class boundaries/include guards across the project.
+* Revision on the main,cpp file 
 
 ## Shared Work
 * Repository setup.
