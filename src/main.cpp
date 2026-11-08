@@ -1,5 +1,6 @@
 /*
-Old version//
+//Old version Roosavelt's
+
 #include "Utils.h"
 #include "FileLoader.h"
 #include "CampusGraph.h"
@@ -156,6 +157,8 @@ int main(int argc, char* argv[]) {
 
 
 // updated final main.cpp
+// Purpose: Loads the four data files and runs the menu.
+
 #include "Utils.h"
 #include "FileLoader.h"
 #include "CampusGraph.h"
@@ -165,7 +168,7 @@ int main(int argc, char* argv[]) {
 #include <string>
 
 
-const bool USE_FINAL_MENU = true;
+const bool USE_FINAL_MENU = false;
 
 
 bool readName(const std::string& prompt, std::string& out) {
