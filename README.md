@@ -24,8 +24,14 @@ g++ -Wall -std=c++11 -Iinclude src/*.cpp -o campus
 ## Run Instructions
 The program accepts an optional command-line argument to specify the directory containing the data files.
 
-**Run with the default data directory (`data/`):**
+**1. Run with the default data directory (`data/`):**
 If no arguments are provided, the program automatically looks for files in the `data/` folder.
 ```bash
 ./campus
+```
+
+**2. Run with a custom data directory (e.g., for testing):**
+To test edge cases or hash collisions, provide the path to your custom directory (like `testdata/`).
+```bash
+./campus testdata/
 ```
