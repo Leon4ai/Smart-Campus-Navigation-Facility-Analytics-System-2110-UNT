@@ -1,7 +1,7 @@
 
 // Purpose: Reads and validates the four data files, printing a warning for each
 //          rejected record and a load summary after each file.
-// Author:  Shared work (all members)
+// Author:  Member B
 #ifndef FILELOADER_H
 #define FILELOADER_H
 
