@@ -2,7 +2,7 @@
 // Purpose: Undirected, unweighted campus graph stored as an adjacency list.
 //          Provides display, counts/degrees, BFS reachability, BFS shortest
 //          path, and the connectivity report.
-// Author:  Member B
+// Team Member 2
 #ifndef CAMPUSGRAPH_H
 #define CAMPUSGRAPH_H
 
