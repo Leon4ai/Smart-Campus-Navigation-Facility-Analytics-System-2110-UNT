@@ -1,6 +1,6 @@
 // Purpose: Shared string helpers used by every module (trimming, case-insensitive
 //          comparison, splitting records on '|', reading user input).
-// Author:  Shared work (all members)
+//Author:  Member B
 #ifndef UTILS_H
 #define UTILS_H
 
