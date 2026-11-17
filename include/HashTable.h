@@ -1,7 +1,7 @@
 
 // Purpose: Custom hash table keyed by facility ID (string -> record index).
 //          Collision strategy: separate chaining (each bucket is a vector).
-// Author:  Member A
+// Author:  Member B
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
