@@ -1,7 +1,7 @@
 
 // Purpose: Facility record and the FacilityDatabase that stores accepted
 //          facilities in file order and indexes them by ID with HashTable.
-// Author:  Member A
+// Author:  Member B
 #ifndef FACILITY_H
 #define FACILITY_H
 
