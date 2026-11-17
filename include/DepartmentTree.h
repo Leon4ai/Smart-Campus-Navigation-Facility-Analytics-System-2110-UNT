@@ -1,7 +1,7 @@
 
 // Purpose: General tree of academic departments (any number of children per node)
 //          with search, indented hierarchy, traversals, and statistics.
-// Author:  Member B
+// Team Member 2
 #ifndef DEPARTMENTTREE_H
 #define DEPARTMENTTREE_H
 
