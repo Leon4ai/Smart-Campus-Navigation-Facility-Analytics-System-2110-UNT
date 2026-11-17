@@ -10,7 +10,7 @@
 * Developed the robust file parsing logic, whitespace trimming, and string splitting in `Utils.cpp` and `FileLoader.cpp`.
 * Built the interactive command-line interface, menu routing, and user input validation in `main.cpp`.
 
-## Team Member 2: Abdullah Zaigham 
+## Team Member 2: Abdullah Zaigham/Leon4ai 
 **Modules Owned:** System Architecture, Data Structure Design, and all Header (`.h`) files.
 
 **Responsibilities:**
