@@ -1,0 +1,11 @@
+# BuildingA|BuildingB
+Library|Student Union
+# reversed duplicate of the line above -> rejected
+Student Union|Library
+# unknown building reference -> rejected
+Library|Hogwarts
+# wrong field count (1 field) -> rejected
+Gym
+# self-connection -> rejected
+Gym|Gym
+Student Union|Gym
