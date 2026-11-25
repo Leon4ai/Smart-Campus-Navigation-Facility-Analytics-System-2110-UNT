@@ -1,0 +1,12 @@
+# Test: blank lines, whitespace-only lines, comments, and padded names
+# The next line is completely empty
+
+# The next line contains only spaces and tabs
+  	  	  
+     Library     
+Student Union
+   Science Building
+Engineering Building
+Business Building
+Gym
+Observatory
