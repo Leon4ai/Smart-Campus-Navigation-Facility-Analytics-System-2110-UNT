@@ -12,7 +12,11 @@ This project is a modular C++ application designed to load, validate, and analyz
 * `include/` : Contains all C++ header files (`.h`), defining the data structures and class interfaces (e.g., `HashTable.h`, `CampusGraph.h`, `DepartmentTree.h`, `Facility.h`, `Utils.h`, `FileLoader.h`).
 * `src/` : Contains all C++ implementation files (`.cpp`), including the core logic and `main.cpp` for the interactive menu.
 * `data/` : Contains the four instructor-provided starter data files (`buildings.txt`, `connections.txt`, `facilities.txt`, `departments.txt`).
-* `testdata/` : Contains custom test files used to demonstrate edge cases, data validation, and hash collisions (e.g., `bad_fields.txt`, `collision_test.txt`).
+* `testdata/` : Runnable test directories. Each one contains the four expected files (`buildings.txt`, `connections.txt`, `facilities.txt`, `departments.txt`):
+  * `testdata/valid/` - blank lines, whitespace-only lines, comments, padded names; F000 and F018 collide (1 collision)
+  * `testdata/bad_records/` - wrong field counts, duplicates, unknown references, invalid IDs, and a rejected duplicate that leaves the collision count unchanged
+* `test_results.txt` : Test log using the Milestone 1 menu numbers.
+* `run_tests.sh` : Builds the program and runs every test in the log.
 
 ## Build Instructions (UNT CSE CELL Machines)
 To compile the project on the UNT CSE CELL machines, navigate to the root directory of the project and run the following `g++` command:
