@@ -1,0 +1,8 @@
+# BuildingName
+Library
+Student Union
+Gym
+# duplicate name with different capitalization -> rejected
+library
+# wrong field count (2 fields) -> rejected
+Science Building|Extra
