@@ -1,5 +1,7 @@
 TEST RESULTS
 
+GitHub repository: https://github.com/Leon4ai/Smart-Campus-Navigation-Facility-Analytics-System-2110-UNT
+
 Format: [Test Number] | [Description] | [Input] | [Expected Result] | [Actual Result] | [Pass/Fail]
 
 --- 10.1 FILE LOADING ---
@@ -17,24 +19,24 @@ Format: [Test Number] | [Description] | [Input] | [Expected Result] | [Actual Re
 10.2.2 | Lowercase ID search | Menu Option 2 -> "f004" | Normalized to F004, prints "Found: F004 | Computer Lab A | ... " | Normalized to F004, prints "Found: F004 | Computer Lab A | ... " | Pass
 10.2.3 | Invalid-format ID search | Menu Option 2 -> "004" | Prints "Invalid format: an ID is F followed by exactly three digits" | Prints "Invalid format: an ID is F followed by exactly three digits" | Pass
 10.2.4 | Not-found ID search | Menu Option 2 -> "F999" | Prints "Not found: no facility with ID F999" | Prints "Not found: no facility with ID F999" | Pass
-10.2.5 | Hash collision | testdata/collision_test.txt | HASH-7 diagnostic reports exactly 1 collision (F000 and F018 hash to same index). | Diagnostic reports 1 collision during load summary. | Pass
+10.2.5 | Hash collision | testdata/valid/ | HASH-7 diagnostic reports exactly 1 collision (F000 and F018 hash to same index). | Diagnostic reports 1 collision during load summary. | Pass
 10.2.6 | Duplicate-key insertion attempt | Add existing ID | Rejected, and the collision count does NOT increase from the rejection. | Rejected, collision count remains unchanged. | Pass
 
 --- 10.3 GRAPH AND BFS ---
-10.3.1 | BFS connected building | Menu Option 7 -> "Library" | Visits all connected buildings in order, showing correct distances. | Visits connected buildings in BFS order with accurate distance steps. | Pass
-10.3.2 | BFS isolated building | Menu Option 7 -> "Observatory" | Shows distance 0, 1 of 7 buildings reachable. | Shows distance 0, 1 of 7 buildings reachable. | Pass
-10.3.3 | BFS unknown start | Menu Option 7 -> "FakeBldg" | Prints "Error: Unknown starting building" and returns to menu. | Prints "Error: Unknown starting building" and returns to menu. | Pass
+10.3.1 | BFS connected building | Menu Option 5 -> "Library" | Visits all connected buildings in order, showing correct distances. | Visits connected buildings in BFS order with accurate distance steps. | Pass
+10.3.2 | BFS isolated building | Menu Option 5 -> "Observatory" | Shows distance 0, 1 of 7 buildings reachable. | Shows distance 0, 1 of 7 buildings reachable. | Pass
+10.3.3 | BFS unknown start | Menu Option 5 -> "FakeBldg" | Prints "Error: Unknown starting building" and returns to menu. | Prints "Error: Unknown starting building" and returns to menu. | Pass
 10.3.4 | Multiple connected components | Custom data with 2 separate clusters | BFS only traverses the cluster containing the start building. | BFS stops after traversing the local connected component. | Pass
 
 --- 10.4 TREE, REPORTS, AND MENU ---
-10.4.1 | Empty tree root add | Menu 9 (Add Dept) on empty tree | Prompts for name, adds as root WITHOUT prompting for parent. | Prompts for name, adds as root WITHOUT prompting for parent. | Pass
-10.4.2 | Root-only tree | Add root, Menu 11 (Hierarchy) | Shows just the root department with no indentation/children. | Shows just the root department with no indentation/children. | Pass
-10.4.3 | Search for root | Menu 10 -> "University" | Prints Name, Parent: None, Child count, Depth 0. | Prints Name, Parent: None, Child count, Depth 0. | Pass
-10.4.4 | Search for non-root | Menu 10 -> "Physics" | Prints Name, Parent: College of Science, Child count, correct depth. | Prints Name, Parent: College of Science, Child count, correct depth. | Pass
-10.4.5 | Search missing dept | Menu 10 -> "FakeDept" | Prints "Department not found." | Prints "Department not found." | Pass
-10.4.6 | Add unknown parent | Menu 9 -> Parent "Fake" | Prints "Error: Unknown parent department", tree unchanged. | Prints "Error: Unknown parent department", tree unchanged. | Pass
-10.4.7 | Add duplicate dept | Menu 9 -> "Physics" | Prints "Error: Department name already exists", tree unchanged. | Prints "Error: Department name already exists", tree unchanged. | Pass
-10.4.8 | Preorder traversal | Menu 12 (Preorder) | Sequence printed top-to-bottom without indentation. | Sequence printed top-to-bottom without indentation. | Pass
+10.4.1 | Empty tree root add | Menu 6 (Add Dept) on empty tree | Prompts for name, adds as root WITHOUT prompting for parent. | Prompts for name, adds as root WITHOUT prompting for parent. | Pass
+10.4.2 | Root-only tree | Add root, Menu 8 (Hierarchy) | Shows just the root department with no indentation/children. | Shows just the root department with no indentation/children. | Pass
+10.4.3 | Search for root | Menu 7 -> "University" | Prints Name, Parent: None, Child count, Depth 0. | Prints Name, Parent: None, Child count, Depth 0. | Pass
+10.4.4 | Search for non-root | Menu 7 -> "Physics" | Prints Name, Parent: College of Science, Child count, correct depth. | Prints Name, Parent: College of Science, Child count, correct depth. | Pass
+10.4.5 | Search missing dept | Menu 7 -> "FakeDept" | Prints "Department not found." | Prints "Department not found." | Pass
+10.4.6 | Add unknown parent | Menu 6 -> Parent "Fake" | Prints "Error: Unknown parent department", tree unchanged. | Prints "Error: Unknown parent department", tree unchanged. | Pass
+10.4.7 | Add duplicate dept | Menu 6 -> "Physics" | Prints "Error: Department name already exists", tree unchanged. | Prints "Error: Department name already exists", tree unchanged. | Pass
+10.4.8 | Preorder traversal | Menu 9 (Preorder) | Sequence printed top-to-bottom without indentation. | Sequence printed top-to-bottom without indentation. | Pass
 10.4.9 | Invalid menu input | Type 'X' at main menu | Prints "Invalid input", recovers to menu without crashing. | Prints "Invalid input", recovers to menu without crashing. | Pass
 10.4.10| Text at numeric prompt | Type text at numeric prompt | Error handled via utils::parseInt, stream clears, recovers to menu. | Error handled via utils::parseInt, stream clears, recovers to menu. | Pass
 10.4.11| Names with spaces | "Student Union" | getline/trim handles it correctly without truncating at the space. | getline/trim handles it correctly without truncating at the space. | Pass
