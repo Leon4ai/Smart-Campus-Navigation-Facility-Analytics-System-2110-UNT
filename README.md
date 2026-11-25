@@ -15,7 +15,7 @@ This project is a modular C++ application designed to load, validate, and analyz
 * `testdata/` : Runnable test directories. Each one contains the four expected files (`buildings.txt`, `connections.txt`, `facilities.txt`, `departments.txt`):
   * `testdata/valid/` - blank lines, whitespace-only lines, comments, padded names; F000 and F018 collide (1 collision)
   * `testdata/bad_records/` - wrong field counts, duplicates, unknown references, invalid IDs, and a rejected duplicate that leaves the collision count unchanged
-* `test_results.txt` : Test log using the Milestone 1 menu numbers.
+* `test_results.txt` : Test log menu numbers.
 * `run_tests.sh` : Builds the program and runs every test in the log.
 
 ## Build Instructions (UNT CSE CELL Machines)
