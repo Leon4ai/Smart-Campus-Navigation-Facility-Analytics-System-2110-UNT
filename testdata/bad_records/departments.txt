@@ -1,0 +1,9 @@
+# DepartmentName|ParentName
+University|NONE
+College of Science|University
+# unknown parent reference -> rejected
+Physics|Fake Parent
+# duplicate department name -> rejected
+college of science|University
+# wrong field count -> rejected
+Mathematics
