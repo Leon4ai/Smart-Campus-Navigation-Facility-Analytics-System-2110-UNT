@@ -34,5 +34,6 @@ If no arguments are provided, the program automatically looks for files in the `
 **2. Run with a custom data directory (e.g., for testing):**
 To test edge cases or hash collisions, provide the path to your custom directory (like `testdata/`).
 ```bash
-./campus testdata/
+./campus testdata/valid/
+./campus testdata/bad_records/
 ```
